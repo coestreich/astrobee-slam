@@ -1,0 +1,16 @@
+float64 x
+float64 y
+float64 z
+float64 vel_x
+float64 vel_y
+float64 vel_z
+float64 quat1
+float64 quat2
+float64 quat3
+float64 quat4
+float64 ang_vel_x
+float64 ang_vel_y
+float64 ang_vel_z
+int8 status
+float64 info_weight_m
+float64 info_weight_Izz

@@ -1,0 +1,24 @@
+# Parameters for the SLAM node.
+
+# Some test parameters.
+
+# Frequency at which we want to operate the SLAM ROS node [Hz].
+node_loop_rate: 10
+
+# Topic in which the IMU measurements are being received.
+imu_meas_topic: /hw/imu
+
+# Topic in which the point cloud measurements are being received.
+pcd_topic: /honey/hw/depth_haz/points
+
+# Visualization interfaces to the `VisualizationManager`
+
+# Choose whether to publish or not the front end estimates used for
+# visualization purposes.
+publish_frontend_estimates: true
+# Topic for the target's centroid estimate. The message should be of type
+# `geometry_msgs/PointStamped`.
+centroid_out_topic: /mitslam/target_centroid
+# Topic for the truncated point cloud with which the centroid was calculated.
+# The message should be of type `sensor_msgs/PointCloud2`.
+target_pcd_out_topic: /mitslam/target_points

@@ -1,0 +1,7 @@
+<launch>
+  <rosparam command="load" file="$(find mit-slam)/params/slam_params.yaml"/>
+  <rosparam command="load" file="$(find mit-slam)/params/blob_params.yaml"/>
+  <rosparam command="load" file="$(find mit-slam)/params/cloud_params.yaml"/>
+
+  <node name="slam_node" pkg="mit-slam" type="slam_node" output="screen"/>
+</launch>

@@ -1,0 +1,123 @@
+# cmake_minimum_required(VERSION 2.8.3)
+project(nmpc_astrobee)
+
+## Compile as C++2020, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+# find_package(catkin REQUIRED COMPONENTS
+#   roslaunch 
+#   roscpp
+#   rospy
+#   std_msgs tf
+#   message_generation
+#   message_runtime
+# )
+
+add_message_files(
+  FILES
+  NMPCInstruct.msg
+)
+
+generate_messages(
+  DEPENDENCIES 
+  std_msgs
+)
+
+###################################
+## catkin specific configuration ##
+###################################
+## The catkin_package macro generates cmake config files for your package
+## Declare things to be passed to dependent projects
+## INCLUDE_DIRS: uncomment this if your package contains header files
+## LIBRARIES: libraries you create in this project that dependent projects also need
+## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## DEPENDS: system dependencies of this project that dependent projects also need
+catkin_package(
+  INCLUDE_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export 
+    ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases
+    ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/INCLUDE
+    ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/INCLUDE/EXTRAS
+    ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC
+  LIBRARIES nmpc_astrobee_lib
+  DEPENDS nmpc_astrobee_lib
+  # CATKIN_DEPENDS roscpp rospy std_msgs message_generation message_runtime tf
+#  DEPENDS system_lib
+)
+
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+## Your package locations should be listed before other locations
+
+### ACADO Shared Library
+include_directories(
+        include ${catkin_INCLUDE_DIRS}
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/INCLUDE
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/INCLUDE/EXTRAS
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC
+)
+
+add_library(
+        nmpc_astrobee_lib
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/Bounds.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/Constraints.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/CyclingManager.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/Indexlist.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/MessageHandling.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/QProblem.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/QProblemB.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/SubjectTo.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/Utils.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/qpoases/SRC/EXTRAS/SolutionAnalysis.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/acado_qpoases_interface.cpp
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/acado_integrator.c
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/acado_solver.c
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/acado_auxiliary_functions.c
+          ${CMAKE_CURRENT_SOURCE_DIR}/NMPC_export/acado_dummy_file.c
+)
+
+# create_library(TARGET nmpc_astrobee_lib
+
+#   )
+
+add_dependencies(nmpc_astrobee_lib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+
+## Executable
+link_directories(NMPC_export)
+
+add_executable(nmpc_astrobee src/main.cpp)
+add_executable(acado_caller src/acado_caller.cpp)
+add_executable(acado_planner src/acado_planner.cpp)
+
+target_link_libraries(nmpc_astrobee nmpc_astrobee_lib ${catkin_LIBRARIES})
+target_link_libraries(acado_caller nmpc_astrobee_lib ${catkin_LIBRARIES})
+target_link_libraries(acado_planner nmpc_astrobee_lib ${catkin_LIBRARIES})
+
+add_dependencies(nmpc_astrobee
+        ${${PROJECT_NAME}_EXPORTED_TARGETS}
+         ${catkin_EXPORTED_TARGETS}
+	)
+
+add_dependencies(acado_caller
+        ${${PROJECT_NAME}_EXPORTED_TARGETS}
+         ${catkin_EXPORTED_TARGETS}
+  )
+
+add_dependencies(acado_planner
+        ${${PROJECT_NAME}_EXPORTED_TARGETS}
+         ${catkin_EXPORTED_TARGETS}
+  )
+
+install(TARGETS nmpc_astrobee_lib DESTINATION lib)
+install(TARGETS nmpc_astrobee acado_caller DESTINATION bin)
+install(TARGETS nmpc_astrobee acado_planner DESTINATION bin)

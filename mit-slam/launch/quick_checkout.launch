@@ -1,0 +1,4 @@
+<launch>
+  <rosparam command="load" file="$(find mit-slam)/params/slam_params.yaml"/>
+  <node name="quick_checkout_node" pkg="mit-slam" type="quick_checkout" output="screen"/>
+</launch>

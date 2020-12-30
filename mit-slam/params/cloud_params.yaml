@@ -1,0 +1,23 @@
+# Parameters for the CloudOdometer node.
+
+# TEASER++ robust registrator parameters.
+
+# Square of ratio between acceptable noise and noise bound. Usually set to 1.
+teaser_cbar2: 1.0
+# When the solver does not estimate scale, it solves the registration problem
+# much faster.
+teaser_estimate_scaling: false
+# A bound on the noise of each provided measurement.
+teaser_noise_bound: 0.01; # 0.01 default in the docs.
+# Maximum iterations allowed for the GNC rotation estimators.
+teaser_rotation_max_iterations: 100
+# Factor to multiple/divide the control parameter in the GNC algorithm.
+teaser_rotation_gnc_factor: 1.4 # Default value from the docs.
+# Cost threshold for the GNC rotation estimators.
+teaser_rotation_cost_threshold: 0.005;
+
+
+
+
+
+

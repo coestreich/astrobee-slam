@@ -1,0 +1,4 @@
+# Parameters for the BlobTracker node.
+
+# Maximum distance for a point cloud point to be considered [m].
+max_point_distance: 100.0

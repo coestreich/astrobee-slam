@@ -1,0 +1,4 @@
+<launch>
+  <rosparam command="load" file="$(find mit-slam)/params/blob_params.yaml"/>
+  <node name="blob_tracker_node" pkg="mit-slam" type="blob_tracker_test" output="screen"/>
+</launch>

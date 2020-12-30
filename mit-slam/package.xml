@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package>
+  <name>mit-slam</name>
+  <version>0.0.0</version>
+
+  <description>Geometric and inertial SLAM.</description>
+  <author email="teran@mit.edu">tonio</author>
+  <maintainer email="teran@mit.edu">tonio</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>opencv3_catkin</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+  <build_depend>eigen_conversions</build_depend>
+  <build_depend>vpp_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>ff_msgs</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>gtsam_catkin</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>opencv3_catkin</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>tf2</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+  <run_depend>eigen_conversions</run_depend>
+  <run_depend>vpp_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>ff_msgs</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>gtsam_catkin</run_depend>
+
+  <build_depend>teaserpp</build_depend>
+  <run_depend>teaserpp</run_depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
+  </export>
+
+</package>

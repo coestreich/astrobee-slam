@@ -1,0 +1,5 @@
+<launch>
+  <!-- Launch nodes for info weighting -->
+  <node name="acado_caller_node" pkg="nmpc_astrobee" type="acado_caller" />
+  <node name="acado_planner_node" pkg="nmpc_astrobee" type="acado_planner" />
+</launch>

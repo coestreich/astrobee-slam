@@ -1,0 +1,14 @@
+Rosbag record command once Astrobee is tumbling:
+rosbag record /honey/hw/cam_nav /honey/hw/depth_haz/points /honey/hw/imu /honey/gnc/ekf /gnc/ekf /honey/loc/truth/pose /honey/loc/truth/twist /loc/truth/pose /loc/truth/twist
+
+Extract NavCam images from bag (from build path):
+devel/lib/localization_node/extract_image_bag /home/charles/td_ws/freeflyer-shared-td/develop/data/vnav_data/<BAG FILE NAME> -image_topic /honey/hw/cam_nav -output_directory /home/charles/td_ws/freeflyer-shared-td/develop/data/vnav_data/<IMAGE FOLDER NAME>
+
+See NavCam images as rosbag is playing:
+rosrun image_view image_view image:=/honey/hw/cam_nav
+
+Record SLAM data via rosbags
+rosbag record /honey/hw/imu /honey/mitslam/deltapose /honey/mitslam/chaser/pose /honey/mitslam/chaser/twist /honey/mitslam/target/pose /honey/mitslam/target/twist /honey/loc/truth/pose /honey/loc/truth/twist /loc/truth/pose /loc/truth/twist
+
+Convert rosbag topics to csv files
+rostopic echo -b <ROSBAG_FILENAME>.bag -p <TOPIC> > <CSV_FILE_NAME>.csv

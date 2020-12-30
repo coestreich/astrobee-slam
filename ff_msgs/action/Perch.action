@@ -1,0 +1,47 @@
+# Copyright (c) 2017, United States Government, as represented by the
+# Administrator of the National Aeronautics and Space Administration.
+#
+# All rights reserved.
+#
+# The Astrobee platform is licensed under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with the
+# License. You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# This message describes the PERCH action offered by the PERCHER
+
+uint8 command
+uint8 PERCH   = 1
+uint8 UNPERCH = 2
+
+---
+
+# Perch result
+int32 response
+int32 CANCELLED                          = 5
+int32 ALREADY_PERCHED                    = 4
+int32 ALREADY_UNPERCHED                  = 3
+int32 UNPERCHED                          = 2
+int32 PERCHED                            = 1
+int32 PREEMPTED                          = 0
+int32 INVALID_COMMAND                    = -1
+int32 NOT_IN_UNPERCHED_STATE             = -2
+int32 NOT_IN_PERCHED_STATE               = -3
+int32 SWITCH_FAILED                      = -4
+int32 MOTION_FAILED                      = -5
+int32 ARM_FAILED                         = -6
+
+# Human readable FSM result for debugging
+string fsm_result
+
+---
+
+# Feedback
+ff_msgs/PerchState state
