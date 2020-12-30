@@ -1,0 +1,42 @@
+# Parameters for the SLAM node.
+
+# Some test parameters.
+
+# iSAM solver iterations
+opt_iters: 20
+
+# bias added to centroid range estimate due to Astrobee surface vs. COM
+# TODO: find a better way to set this for rotating cube (SPHERES was spherical)
+blob_range_bias: 0.07
+
+# chaser prior noise models
+# Note: GTSAM convention is rotation noise on the first 3 components, then translation
+# Bias order is accelBias, gyroBias, as in imuBias::ConstantBias.vector()
+ppNM: [0.01, 0.01, 0.01, 0.001, 0.001, 0.001]
+vpNM: [0.005, 0.005, 0.005]
+bpNM: [1e-3, 1e-3, 1e-3, 1e-3, 1e-3, 1e-3]
+
+# prior noise model for geo offset
+tpNM: 3
+
+# LIDAR odometry noise
+# Note: loop closure noise same as normal for now, may change in the future
+gNM: [0.02, 0.02, 0.02, 0.04, 0.04, 0.04]
+lcNM: [0.02, 0.02, 0.02, 0.04, 0.04, 0.04]
+
+# Rotation kinematic factor noise
+rkfNM: 0.05
+
+# Blob centroid estimate noise
+blobNM: [0.05, 0.05, 0.05]
+
+# IMU noise and bias parameters (Epson G362)
+# Also referenced https://github.com/haidai/gtsam/blob/master/examples/ImuFactorsExample.cpp
+accel_noise_sigma: 0.00021929
+gyro_noise_sigma: 0.00001655
+accel_bias_rw_sigma: 0.005060
+gyro_bias_rw_sigma: 0.0000055192
+integration_error_cov_factor: 1e-8
+bias_acc_omega_int_factor: 1e-5
+
+

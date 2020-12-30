@@ -1,0 +1,31 @@
+# Parameters for the SLAM node.
+
+# Some test parameters.
+
+# Frequency at which we want to operate the SLAM ROS node [Hz].
+node_loop_rate: 62.5
+
+# Choose whether to publish or not the front end estimates used for
+# visualization purposes.
+publish_frontend_estimates: true
+
+# Number of matches before downsampling
+downsample_thresh: 200
+
+# Number of matches required for loop-closure
+loop_match_thresh: 400
+
+# IMU dt [s]
+imu_dt: 0.016
+
+# Initial chaser pose estimate in world frame.
+# TODO: find a better way to obtain this automatically
+# Format: 4x4 T matrix, arranged in row-major order
+T_WC0: [0.0, -1.0, 0.0, 0.0, 
+        1.0, 0.0, 0.0, -2.0, 
+        0.0, 0.0, 1.0, 0.0, 
+        0.0, 0.0, 0.0, 1.0]
+
+# Initial chaser velocity in world frame.
+v_WC0: [0.0, 0.0, 0.0]
+

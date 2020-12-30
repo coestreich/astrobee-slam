@@ -1,4 +1,4 @@
-# Parameters for the CloudOdometer node.
+# Parameters for the CloudOdometer.
 
 # TEASER++ robust registrator parameters.
 
@@ -8,13 +8,25 @@ teaser_cbar2: 1.0
 # much faster.
 teaser_estimate_scaling: false
 # A bound on the noise of each provided measurement.
-teaser_noise_bound: 0.01; # 0.01 default in the docs.
-# Maximum iterations allowed for the GNC rotation estimators.
-teaser_rotation_max_iterations: 100
+teaser_noise_bound: 0.008; 
 # Factor to multiple/divide the control parameter in the GNC algorithm.
-teaser_rotation_gnc_factor: 1.4 # Default value from the docs.
+teaser_rotation_gnc_factor: 1.4 
 # Cost threshold for the GNC rotation estimators.
-teaser_rotation_cost_threshold: 0.005;
+teaser_rotation_cost_threshold: 0.00001;
+
+
+# 3D feature detection parameters
+# For 2 meter scenario
+norm_radius: 0.0375
+fpfh_radius: 0.045
+
+# Matching parameters
+use_absolute_scale: true
+use_crosscheck: true
+use_tuple_test: false
+tuple_scale: 0.975
+
+
 
 
 

@@ -102,6 +102,7 @@ void SlamNode::PointCloudCallback(const sensor_msgs::PointCloud2 &msg) {
   // Record time of frame for future reference
   frame_times_.push_back(ros::Time::now().toSec());
   frame_idx_++;
+  std::cout << "Frame index: " << frame_idx_ << std::endl;
 
   // Create matrix for the downsampled, usable point cloud.
   Eigen::MatrixXf eigen_pcd;

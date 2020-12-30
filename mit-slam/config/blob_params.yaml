@@ -1,0 +1,9 @@
+# Parameters for the BlobTracker.
+
+# Maximum distance for a point cloud point to be considered [m].
+max_x_distance: 0.5
+max_y_distance: 0.5
+max_z_distance: 2.5
+
+# Maximum point cloud size before downsampling.
+max_pcd_size: 2000

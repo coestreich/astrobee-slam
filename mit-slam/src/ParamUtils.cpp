@@ -15,6 +15,8 @@ SlamNode::Params SlamParamsFromRos() {
   ros::param::param<int>("node_loop_rate", params.loop_rate, 62.5);  // [Hz]
   ros::param::param<bool>("publish_frontend_estimates", params.publish_frontend_estimates, true);
 
+  std::cout << "Node loop rate: " << params.loop_rate << std::endl;
+
   /// Default ROS topic names for subscribing
   ros::param::param<std::string>("imu_topic", params.imu_topic,
                                  "/honey/hw/imu");
